@@ -7389,8 +7389,6 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         details.currentDate = widget.maxDate;
       }
 
-      print('_updatePickerStateValues ${details.currentDate}');
-
       _currentDate = details.currentDate;
       _controller.displayDate = _currentDate;
     }
@@ -9969,6 +9967,8 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
+    
+    print('_currentViewVisibleDates: $_currentViewVisibleDates');
 
     if(isYear) {
       for (var i = 0; i < _currentViewVisibleDates.length; i++) {
