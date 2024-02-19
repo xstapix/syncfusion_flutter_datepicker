@@ -7324,8 +7324,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     print('_isRtl: $_isRtl');
 
     _isRtl
-        ? _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true)
-        : _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true);
+        ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true)
+        : _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true);
   }
 
   void _moveToPreviousViewYear() {
@@ -7345,7 +7345,7 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     }
 
     _isRtl
-        ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
+        ? _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true)
         : _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true);
   }
 
