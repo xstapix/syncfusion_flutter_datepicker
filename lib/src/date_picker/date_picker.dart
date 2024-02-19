@@ -9985,7 +9985,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     _pickerStateDetails.currentDate = _currentViewVisibleDates[0];
     
     print('_pickerStateDetails.currentViewVisibleDates: ${_pickerStateDetails.currentViewVisibleDates}');
-    print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate is String}');
+    print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate is DateTime}');
 
     final int numberOfWeeksInView =
         DateRangePickerHelper.getNumberOfWeeksInView(
