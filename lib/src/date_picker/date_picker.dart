@@ -7319,8 +7319,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     }
 
     _isRtl
-        ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
-        : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
+        ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true)
+        : _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true);
   }
 
   void _moveToPreviousViewYear() {
@@ -9983,11 +9983,12 @@ class _PickerScrollViewState extends State<_PickerScrollView>
           _currentViewVisibleDates.length ~/
               (widget.picker.enableMultiView ? 4 : 2)];
       
-      print(date.year is int);
-      print(date.year + 1);
+      print(date);
 
       _pickerStateDetails.currentDate = DateRangePickerHelper.getDate(
-          date.year, date.month, 1, widget.picker.isHijri);
+          date.year + 1, date.month, 1, widget.picker.isHijri);
+ 
+      print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate}');
     }
 
     widget.updatePickerStateValues(_pickerStateDetails);
