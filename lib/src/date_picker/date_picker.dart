@@ -9972,7 +9972,12 @@ class _PickerScrollViewState extends State<_PickerScrollView>
 
     if(isYear) {
       for (var i = 0; i < _currentViewVisibleDates.length; i++) {
-        var e = DateTime(_currentViewVisibleDates[i].year + 1, _currentViewVisibleDates[i].month, _currentViewVisibleDates[i].day);
+        var e = DateTime(
+          isNextView ? _currentViewVisibleDates[i].year + 1 : _currentViewVisibleDates[i].year - 1, 
+          _currentViewVisibleDates[i].month, 
+          _currentViewVisibleDates[i].day
+        );
+
         _currentViewVisibleDates[i] = e;
       }
     }
