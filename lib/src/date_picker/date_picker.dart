@@ -7297,6 +7297,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         widget.isHijri)) {
       return;
     }
+    
+    print('_isRtl: $_isRtl');
 
     _isRtl
         ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
@@ -7363,6 +7365,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         widget.isHijri)) {
       return;
     }
+    
+    print('_isRtl: $_isRtl');
 
     _isRtl
         ? _scrollViewKey.currentState!._moveToNextViewWithAnimation()
