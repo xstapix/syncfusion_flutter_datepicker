@@ -32,8 +32,6 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.0
-  syncfusion_flutter_core:
-      path: ./lib/core
 
 dev_dependencies:
   flutter_test:
