@@ -6063,7 +6063,9 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
 
   void _initNavigation() {
     _controller.forward = _moveToNextView;
+    _controller.forwardYear = _moveToNextViewYear;
     _controller.backward = _moveToPreviousView;
+    _controller.backwardYear = _moveToPreviousViewYear;
   }
 
   void _initPickerController() {
@@ -6871,6 +6873,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
               widget.allowViewNavigation,
               _controller.backward,
               _controller.forward,
+              _controller.backwardYear,
+              _controller.forwardYear,
               _isMultiViewEnabled(widget),
               widget.viewSpacing,
               widget.selectionColor ?? _datePickerTheme.selectionColor!,
@@ -7005,6 +7009,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                 widget.allowViewNavigation,
                 _controller.backward,
                 _controller.forward,
+                _controller.backwardYear,
+                _controller.forwardYear,
                 _isMultiViewEnabled(widget),
                 widget.viewSpacing,
                 widget.selectionColor ?? _datePickerTheme.selectionColor!,
@@ -7290,6 +7296,48 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
     _isRtl
         ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
         : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
+  }
+
+  void _moveToNextViewYear() {
+    print('_moveToNextViewYear');
+    // if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
+    //   return;
+    // }
+    // if (!DateRangePickerHelper.canMoveToNextView(
+    //     _view,
+    //     DateRangePickerHelper.getNumberOfWeeksInView(
+    //         widget.monthViewSettings, widget.isHijri),
+    //     widget.maxDate,
+    //     _currentViewVisibleDates,
+    //     _isMultiViewEnabled(widget),
+    //     widget.isHijri)) {
+    //   return;
+    // }
+
+    // _isRtl
+    //     ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
+    //     : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
+  }
+
+  void _moveToPreviousViewYear() {
+    print('_moveToPreviousViewYear');
+    // if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
+    //   return;
+    // }
+    // if (!DateRangePickerHelper.canMoveToNextView(
+    //     _view,
+    //     DateRangePickerHelper.getNumberOfWeeksInView(
+    //         widget.monthViewSettings, widget.isHijri),
+    //     widget.maxDate,
+    //     _currentViewVisibleDates,
+    //     _isMultiViewEnabled(widget),
+    //     widget.isHijri)) {
+    //   return;
+    // }
+
+    // _isRtl
+    //     ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
+    //     : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
   }
 
   void _moveToPreviousView() {
@@ -7895,6 +7943,8 @@ class _PickerHeaderView extends StatefulWidget {
       this.allowViewNavigation,
       this.previousNavigationCallback,
       this.nextNavigationCallback,
+      this.previousYearNavigationCallback,
+      this.nextYearNavigationCallback,
       this.enableMultiView,
       this.multiViewSpacing,
       this.hoverColor,
@@ -7957,6 +8007,12 @@ class _PickerHeaderView extends StatefulWidget {
 
   /// Holds the next navigation call back for date range picker.
   final VoidCallback? nextNavigationCallback;
+
+  //custom
+  final VoidCallback? previousYearNavigationCallback;
+
+  //custom
+  final VoidCallback? nextYearNavigationCallback;
 
   /// Holds the picker view width used on widget positioning.
   final double width;
@@ -8213,7 +8269,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
             prevArrowColor != arrowColor ? Colors.transparent : null,
         color: widget.headerStyle.backgroundColor ??
             widget.datePickerTheme.headerBackgroundColor,
-        onPressed: widget.previousNavigationCallback,
+        onPressed: widget.previousYearNavigationCallback,
         padding: EdgeInsets.zero,
         elevation: 0,
         focusElevation: 0,
@@ -8251,7 +8307,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
             prevArrowColor != arrowColor ? Colors.transparent : null,
         color: widget.headerStyle.backgroundColor ??
             widget.datePickerTheme.headerBackgroundColor,
-        onPressed: widget.previousNavigationCallback,
+        onPressed: widget.nextYearNavigationCallback,
         padding: EdgeInsets.zero,
         elevation: 0,
         focusElevation: 0,
