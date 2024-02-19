@@ -9957,16 +9957,25 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     bool isNextView = false, 
     bool isYear = false
   }) {
-    print('_updateCurrentViewVisibleDates${isYear}');
+    print('_updateCurrentViewVisibleDates: ${isYear}');
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
+    
+    print('_currentViewVisibleDates: $_currentViewVisibleDates');
 
     _pickerStateDetails.currentViewVisibleDates = _currentViewVisibleDates;
     _pickerStateDetails.currentDate = _currentViewVisibleDates[0];
+    
+    print('_pickerStateDetails.currentViewVisibleDates: ${_pickerStateDetails.currentViewVisibleDates}');
+    print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate}');
+
     final int numberOfWeeksInView =
         DateRangePickerHelper.getNumberOfWeeksInView(
             widget.picker.monthViewSettings, widget.picker.isHijri);
+    
+    print('numberOfWeeksInView: $numberOfWeeksInView');
+    
     if (pickerView == DateRangePickerView.month &&
         (numberOfWeeksInView == 6 || widget.picker.isHijri)) {
       final dynamic date = _currentViewVisibleDates[
