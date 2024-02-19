@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:syncfusion_flutter_datepicker/core/lib/core.dart';
 import 'package:syncfusion_flutter_datepicker/core/lib/core_internal.dart';
@@ -7318,6 +7319,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
       return;
     }
 
+    print('_isRtl: $_isRtl');
+
     _isRtl
         ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true)
         : _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true);
@@ -7338,6 +7341,8 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         widget.isHijri)) {
       return;
     }
+
+    print('_isRtl: $_isRtl');
 
     _isRtl
         ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true)
