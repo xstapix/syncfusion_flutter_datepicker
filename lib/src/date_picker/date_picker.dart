@@ -9982,7 +9982,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
           _currentViewVisibleDates.length ~/
               (widget.picker.enableMultiView ? 4 : 2)];
       _pickerStateDetails.currentDate = DateRangePickerHelper.getDate(
-          date.year, date.month, 1, widget.picker.isHijri);
+          date.year+1, date.month, 1, widget.picker.isHijri);
     }
 
     widget.updatePickerStateValues(_pickerStateDetails);
