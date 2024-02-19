@@ -8273,10 +8273,10 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
             prevArrowColor != arrowColor ? Colors.transparent : null,
         color: widget.headerStyle.backgroundColor ??
             widget.datePickerTheme.headerBackgroundColor,
-        // onPressed: widget.previousYearNavigationCallback,
-        onPressed:() {
-          print('_getLeftYearArrow');
-        },
+        onPressed: widget.previousYearNavigationCallback,
+        // onPressed:() {
+        //   print('_getLeftYearArrow');
+        // },
         padding: EdgeInsets.zero,
         elevation: 0,
         focusElevation: 0,
@@ -8314,10 +8314,10 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
             prevArrowColor != arrowColor ? Colors.transparent : null,
         color: widget.headerStyle.backgroundColor ??
             widget.datePickerTheme.headerBackgroundColor,
-        // onPressed: widget.nextYearNavigationCallback,
-        onPressed:() {
-          print('_getRightYearArrow');
-        },
+        onPressed: widget.nextYearNavigationCallback,
+        // onPressed:() {
+        //   print('_getRightYearArrow');
+        // },
         padding: EdgeInsets.zero,
         elevation: 0,
         focusElevation: 0,
