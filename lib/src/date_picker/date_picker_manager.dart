@@ -3919,6 +3919,8 @@ class DateRangePickerController extends DateRangePickerValueChangeNotifier {
   ///
   /// ```
   VoidCallback? backward;
+  VoidCallback? backwardYear;
+  VoidCallback? forwardYear;
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

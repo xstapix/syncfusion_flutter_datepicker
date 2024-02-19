@@ -6063,9 +6063,9 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
 
   void _initNavigation() {
     _controller.forward = _moveToNextView;
-    // _controller.forwardYear = _moveToNextViewYear;
+    _controller.forwardYear = _moveToNextViewYear;
     _controller.backward = _moveToPreviousView;
-    // _controller.backwardYear = _moveToPreviousViewYear;
+    _controller.backwardYear = _moveToPreviousViewYear;
   }
 
   void _initPickerController() {
@@ -6873,8 +6873,10 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
               widget.allowViewNavigation,
               _controller.backward,
               _controller.forward,
-              () {},
-              () {},
+              _controller.backwardYear,
+              _controller.forwardYear,
+              // () {},
+              // () {},
               _isMultiViewEnabled(widget),
               widget.viewSpacing,
               widget.selectionColor ?? _datePickerTheme.selectionColor!,
@@ -7009,8 +7011,10 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
                 widget.allowViewNavigation,
                 _controller.backward,
                 _controller.forward,
-                () {},
-                () {},
+                _controller.backwardYear,
+                _controller.forwardYear,
+                // () {},
+                // () {},
                 _isMultiViewEnabled(widget),
                 widget.viewSpacing,
                 widget.selectionColor ?? _datePickerTheme.selectionColor!,
