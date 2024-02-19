@@ -9971,7 +9971,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
 
     for (var i = 0; i < _currentViewVisibleDates.length; i++) {
-      _currentViewVisibleDates[i].year + 1;
+      _currentViewVisibleDates[i].year = _currentViewVisibleDates[i].year + 1;
     }
     
     print('_currentViewVisibleDates: $_currentViewVisibleDates');
