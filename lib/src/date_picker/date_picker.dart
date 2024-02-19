@@ -9970,9 +9970,11 @@ class _PickerScrollViewState extends State<_PickerScrollView>
         DateRangePickerHelper.getPickerView(widget.controller.view);
     _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
 
-    for (var i = 0; i < _currentViewVisibleDates.length; i++) {
-      var e = DateTime(_currentViewVisibleDates[i].year + 1, _currentViewVisibleDates[i].month, _currentViewVisibleDates[i].day);
-      _currentViewVisibleDates[i] = e;
+    if(isYear) {
+      for (var i = 0; i < _currentViewVisibleDates.length; i++) {
+        var e = DateTime(_currentViewVisibleDates[i].year + 1, _currentViewVisibleDates[i].month, _currentViewVisibleDates[i].day);
+        _currentViewVisibleDates[i] = e;
+      }
     }
     
     print('_currentViewVisibleDates: $_currentViewVisibleDates');
@@ -9998,7 +10000,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
       print(date);
 
       _pickerStateDetails.currentDate = DateRangePickerHelper.getDate(
-          date.year + 1, date.month, 1, widget.picker.isHijri);
+          date.year, date.month, 1, widget.picker.isHijri);
  
       print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate}');
     }
