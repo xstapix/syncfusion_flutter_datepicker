@@ -8295,7 +8295,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
                     DateRangePickerNavigationDirection.horizontal
                 ? Icons.keyboard_double_arrow_left_outlined
                 : Icons.keyboard_arrow_up,
-            color: prevArrowColor,
+            color: Color(0xFFFBD436),
             size: arrowSize,
           ),
         ),
@@ -8336,7 +8336,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
                     DateRangePickerNavigationDirection.horizontal
                 ? Icons.keyboard_double_arrow_right_outlined
                 : Icons.keyboard_arrow_up,
-            color: prevArrowColor,
+            color: Color(0xFFFBD436),
             size: arrowSize,
           ),
         ),
@@ -8374,7 +8374,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
                     DateRangePickerNavigationDirection.horizontal
                 ? Icons.chevron_left
                 : Icons.keyboard_arrow_up,
-            color: prevArrowColor,
+            color: Color(0xFFFBD436),
             size: arrowSize,
           ),
         ),
@@ -8412,7 +8412,7 @@ class _PickerHeaderViewState extends State<_PickerHeaderView> {
                     DateRangePickerNavigationDirection.horizontal
                 ? Icons.chevron_right
                 : Icons.keyboard_arrow_down,
-            color: nextArrowColor,
+            color: Color(0xFFFBD436),
             size: arrowSize,
           ),
         ),
@@ -9962,13 +9962,9 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     bool isNextView = false, 
     bool isYear = false
   }) {
-    print('_updateCurrentViewVisibleDates isYear: ${isYear}');
-    print('_updateCurrentViewVisibleDates isNextView: ${isYear}');
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
-    
-    print('_currentViewVisibleDates: $_currentViewVisibleDates');
 
     if(isYear) {
       for (var i = 0; i < _currentViewVisibleDates.length; i++) {
@@ -9982,32 +9978,22 @@ class _PickerScrollViewState extends State<_PickerScrollView>
       }
     }
     
-    print('_currentViewVisibleDates: $_currentViewVisibleDates');
-
     _pickerStateDetails.currentViewVisibleDates = _currentViewVisibleDates;
     _pickerStateDetails.currentDate = _currentViewVisibleDates[0];
     
-    print('_pickerStateDetails.currentViewVisibleDates: ${_pickerStateDetails.currentViewVisibleDates}');
-    print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate is DateTime}');
-
     final int numberOfWeeksInView =
         DateRangePickerHelper.getNumberOfWeeksInView(
             widget.picker.monthViewSettings, widget.picker.isHijri);
-    
-    print('numberOfWeeksInView: $numberOfWeeksInView');
     
     if (pickerView == DateRangePickerView.month &&
         (numberOfWeeksInView == 6 || widget.picker.isHijri)) {
       final dynamic date = _currentViewVisibleDates[
           _currentViewVisibleDates.length ~/
               (widget.picker.enableMultiView ? 4 : 2)];
-      
-      print(date);
 
       _pickerStateDetails.currentDate = DateRangePickerHelper.getDate(
           date.year, date.month, 1, widget.picker.isHijri);
  
-      print('_pickerStateDetails.currentDate: ${_pickerStateDetails.currentDate}');
     }
 
     widget.updatePickerStateValues(_pickerStateDetails);
