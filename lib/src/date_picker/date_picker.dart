@@ -7304,44 +7304,44 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
 
   void _moveToNextViewYear() {
     print('_moveToNextViewYear');
-    // if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
-    //   return;
-    // }
-    // if (!DateRangePickerHelper.canMoveToNextView(
-    //     _view,
-    //     DateRangePickerHelper.getNumberOfWeeksInView(
-    //         widget.monthViewSettings, widget.isHijri),
-    //     widget.maxDate,
-    //     _currentViewVisibleDates,
-    //     _isMultiViewEnabled(widget),
-    //     widget.isHijri)) {
-    //   return;
-    // }
+    if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
+      return;
+    }
+    if (!DateRangePickerHelper.canMoveToNextView(
+        _view,
+        DateRangePickerHelper.getNumberOfWeeksInView(
+            widget.monthViewSettings, widget.isHijri),
+        widget.maxDate,
+        _currentViewVisibleDates,
+        _isMultiViewEnabled(widget),
+        widget.isHijri)) {
+      return;
+    }
 
-    // _isRtl
-    //     ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
-    //     : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
+    _isRtl
+        ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
+        : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
   }
 
   void _moveToPreviousViewYear() {
     print('_moveToPreviousViewYear');
-    // if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
-    //   return;
-    // }
-    // if (!DateRangePickerHelper.canMoveToNextView(
-    //     _view,
-    //     DateRangePickerHelper.getNumberOfWeeksInView(
-    //         widget.monthViewSettings, widget.isHijri),
-    //     widget.maxDate,
-    //     _currentViewVisibleDates,
-    //     _isMultiViewEnabled(widget),
-    //     widget.isHijri)) {
-    //   return;
-    // }
+    if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
+      return;
+    }
+    if (!DateRangePickerHelper.canMoveToNextView(
+        _view,
+        DateRangePickerHelper.getNumberOfWeeksInView(
+            widget.monthViewSettings, widget.isHijri),
+        widget.maxDate,
+        _currentViewVisibleDates,
+        _isMultiViewEnabled(widget),
+        widget.isHijri)) {
+      return;
+    }
 
-    // _isRtl
-    //     ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
-    //     : _scrollViewKey.currentState!._moveToNextViewWithAnimation();
+    _isRtl
+        ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true)
+        : _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true);
   }
 
   void _moveToPreviousView() {
@@ -9302,7 +9302,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     widget.updatePickerStateValues(_pickerStateDetails);
   }
 
-  void _moveToNextViewWithAnimation() {
+  void _moveToNextViewWithAnimation({bool isYear = false}) {
     // Resets the controller to forward it again, the animation will forward
     // only from the dismissed state
     if (_animationController.isCompleted || _animationController.isDismissed) {
@@ -9332,10 +9332,10 @@ class _PickerScrollViewState extends State<_PickerScrollView>
         .then<dynamic>((dynamic value) => _updateNextView());
 
     /// updates the current view visible dates when the view swiped
-    _updateCurrentViewVisibleDates(isNextView: true);
+    _updateCurrentViewVisibleDates(isNextView: true, isYear: isYear);
   }
 
-  void _moveToPreviousViewWithAnimation() {
+  void _moveToPreviousViewWithAnimation({bool isYear = false}) {
     // Resets the controller to backward it again, the animation will backward
     // only from the dismissed state
     if (_animationController.isCompleted || _animationController.isDismissed) {
@@ -9365,7 +9365,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
         .then<dynamic>((dynamic value) => _updatePreviousView());
 
     /// updates the current view visible dates when the view swiped.
-    _updateCurrentViewVisibleDates();
+    _updateCurrentViewVisibleDates(isYear: isYear);
   }
 
   void _updateVisibleDatesForMultiView(List<dynamic> afterVisibleDates) {
@@ -9953,7 +9953,11 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   }
 
   /// Updates the current view visible dates for picker in the swiping end
-  void _updateCurrentViewVisibleDates({bool isNextView = false}) {
+  void _updateCurrentViewVisibleDates({
+    bool isNextView = false, 
+    bool isYear = false
+  }) {
+    print('_updateCurrentViewVisibleDates${isYear}');
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
