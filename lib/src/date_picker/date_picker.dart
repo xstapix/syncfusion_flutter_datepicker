@@ -9325,7 +9325,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     _animationController.duration = const Duration(milliseconds: 500);
     _animationController
         .forward()
-        .then<dynamic>((dynamic value) => _updateNextView());
+        .then<dynamic>((dynamic value) => _updateNextView(isYear: isYear));
 
     /// updates the current view visible dates when the view swiped
     _updateCurrentViewVisibleDates(isNextView: true, isYear: isYear);
@@ -9358,7 +9358,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     _animationController.duration = const Duration(milliseconds: 500);
     _animationController
         .forward()
-        .then<dynamic>((dynamic value) => _updatePreviousView());
+        .then<dynamic>((dynamic value) => _updatePreviousView(isYear: isYear));
 
     /// updates the current view visible dates when the view swiped.
     _updateCurrentViewVisibleDates(isYear: isYear);
@@ -9388,8 +9388,8 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     }
   }
 
-  void _updateNextViewVisibleDates() {
-    print('_updateNextViewVisibleDates');
+  void _updateNextViewVisibleDates({bool isYear = false}) {
+    print('_updateNextViewVisibleDates $isYear');
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     final int numberOfWeeksInView =
@@ -9438,7 +9438,20 @@ class _PickerScrollViewState extends State<_PickerScrollView>
                 view, numberOfWeeksInView, widget.picker.isHijri),
           );
 
+          if(isYear) {
+            for (var i = 0; i < dates.length; i++) {
+              var e = DateTime(
+                dates[i].year + 1, 
+                dates[i].month,
+                dates[i].day
+              );
+
+              dates[i] = e;
+            }
+          }
+
           print(dates);
+
           if (widget.picker.enableMultiView && !widget.isRtl) {
             afterVisibleDates = getVisibleDates(
               afterNextViewDate,
@@ -9497,8 +9510,8 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     return dates;
   }
 
-  void _updatePreviousViewVisibleDates() {
-    print('_updatePreviousViewVisibleDates');
+  void _updatePreviousViewVisibleDates({bool isYear = false}) {
+    print('_updatePreviousViewVisibleDates $isYear');
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     final int numberOfWeeksInView =
@@ -9547,7 +9560,21 @@ class _PickerScrollViewState extends State<_PickerScrollView>
             DateRangePickerHelper.getViewDatesCount(
                 view, numberOfWeeksInView, widget.picker.isHijri),
           );
+
+          if(isYear) {
+            for (var i = 0; i < dates.length; i++) {
+              var e = DateTime(
+                dates[i].year + 1, 
+                dates[i].month,
+                dates[i].day
+              );
+
+              dates[i] = e;
+            }
+          }
+          
           print(dates);
+          
           if (widget.picker.enableMultiView && widget.isRtl) {
             afterVisibleDates = getVisibleDates(
               afterNextViewDate,
@@ -9995,13 +10022,13 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     widget.updatePickerStateValues(_pickerStateDetails);
   }
 
-  void _updateNextView() {
-    print('_updateNextView');
+  void _updateNextView({bool isYear = false}) {
+    print('_updateNextView $isYear');
     if (!_animationController.isCompleted) {
       return;
     }
 
-    _updateNextViewVisibleDates();
+    _updateNextViewVisibleDates(isYear: isYear);
 
     if (_currentChildIndex == 0) {
       _currentChildIndex = 1;
@@ -10025,12 +10052,12 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     _resetPosition();
   }
 
-  void _updatePreviousView() {
+  void _updatePreviousView({bool isYear = false}) {
     if (!_animationController.isCompleted) {
       return;
     }
 
-    _updatePreviousViewVisibleDates();
+    _updatePreviousViewVisibleDates(isYear: isYear);
 
     if (_currentChildIndex == 0) {
       _currentChildIndex = 2;
