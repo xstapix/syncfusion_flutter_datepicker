@@ -8936,6 +8936,8 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   late List<dynamic> _visibleDates,
       _previousViewVisibleDates,
       _nextViewVisibleDates,
+      _previousYearViewVisibleDates,
+      _nextYearViewVisibleDates,
       _currentViewVisibleDates;
 
   /// keys maintained to access the data and methods from the picker view
@@ -9180,6 +9182,8 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   void dispose() {
     _previousViewVisibleDates.clear();
     _nextViewVisibleDates.clear();
+    _previousYearViewVisibleDates.clear();
+    _nextYearViewVisibleDates.clear();
     _currentViewVisibleDates.clear();
     _animationController.dispose();
     _animation.removeListener(_animationListener);
@@ -9238,6 +9242,31 @@ class _PickerScrollViewState extends State<_PickerScrollView>
                 view, numberOfWeeksInView, widget.picker.isHijri),
           );
           _nextViewVisibleDates = getVisibleDates(
+            nextDate,
+            null,
+            widget.picker.monthViewSettings.firstDayOfWeek,
+            DateRangePickerHelper.getViewDatesCount(
+                view, numberOfWeeksInView, widget.picker.isHijri),
+          );
+          var previousYears = getVisibleDates(
+            prevDate,
+            null,
+            widget.picker.monthViewSettings.firstDayOfWeek,
+            DateRangePickerHelper.getViewDatesCount(
+                view, numberOfWeeksInView, widget.picker.isHijri),
+          );
+
+          for (var i = 0; i < previousYears.length; i++) {
+            var e = DateTime(
+              previousYears[i].year + 1, 
+              previousYears[i].month,
+              previousYears[i].day
+            );
+
+            previousYears[i] = e;
+          }
+          _previousYearViewVisibleDates = previousYears;
+          _nextYearViewVisibleDates = getVisibleDates(
             nextDate,
             null,
             widget.picker.monthViewSettings.firstDayOfWeek,
@@ -9608,7 +9637,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     } else if (_currentChildIndex == 1) {
       _nextViewVisibleDates = dates;
     } else {
-      _previousViewVisibleDates = dates;
+      isYear ? _previousYearViewVisibleDates = dates : _previousViewVisibleDates = dates;
     }
   }
 
