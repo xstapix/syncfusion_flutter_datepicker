@@ -9564,7 +9564,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
           if(isYear) {
             for (var i = 0; i < dates.length; i++) {
               var e = DateTime(
-                dates[i].year + 1, 
+                dates[i].year - 1, 
                 dates[i].month,
                 dates[i].day
               );
@@ -9574,7 +9574,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
           }
           
           print(dates);
-          
+
           if (widget.picker.enableMultiView && widget.isRtl) {
             afterVisibleDates = getVisibleDates(
               afterNextViewDate,
