@@ -9349,7 +9349,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     }
 
     /// returns the disable dates collection when right to left swiping
-    _triggerSelectableDayPredicates(_getCurrentVisibleDates(true));
+    _triggerSelectableDayPredicates(_getCurrentVisibleDates(true, false));
 
     _animationController.duration = const Duration(milliseconds: 500);
     _animationController
@@ -9382,7 +9382,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
     }
 
     /// returns the disable dates collection when left to right swiping
-    _triggerSelectableDayPredicates(_getCurrentVisibleDates(false));
+    _triggerSelectableDayPredicates(_getCurrentVisibleDates(false, false));
 
     _animationController.duration = const Duration(milliseconds: 500);
     _animationController
@@ -9989,20 +9989,20 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   }
 
   /// Return the current view visible dates for picker based on view index.
-  List<dynamic> _getCurrentVisibleDates(bool isNextView) {
+  List<dynamic> _getCurrentVisibleDates(bool isNextView, bool isYear) {
     if (isNextView) {
       if (_currentChildIndex == 0) {
         return _visibleDates;
       } else if (_currentChildIndex == 1) {
         return _nextViewVisibleDates;
       } else {
-        return _previousViewVisibleDates;
+        return isYear ? _previousYearViewVisibleDates : _previousViewVisibleDates;
       }
     } else {
       if (_currentChildIndex == 0) {
         return _nextViewVisibleDates;
       } else if (_currentChildIndex == 1) {
-        return _previousViewVisibleDates;
+        return isYear ? _previousYearViewVisibleDates : _previousViewVisibleDates;
       } else {
         return _visibleDates;
       }
@@ -10016,7 +10016,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   }) {
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
-    _currentViewVisibleDates = _getCurrentVisibleDates(isNextView);
+    _currentViewVisibleDates = _getCurrentVisibleDates(isNextView, isYear);
 
     // if(isYear) {
     //   for (var i = 0; i < _currentViewVisibleDates.length; i++) {
@@ -10950,7 +10950,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
           }
 
           final bool isNextView = difference < 0;
-          _triggerSelectableDayPredicates(_getCurrentVisibleDates(isNextView));
+          _triggerSelectableDayPredicates(_getCurrentVisibleDates(isNextView, false));
 
           _position = difference;
           setState(() {
@@ -11156,7 +11156,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
           }
 
           final bool isNextView = difference < 0;
-          _triggerSelectableDayPredicates(_getCurrentVisibleDates(isNextView));
+          _triggerSelectableDayPredicates(_getCurrentVisibleDates(isNextView, false));
 
           _position = difference;
           setState(() {
