@@ -7297,8 +7297,6 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
         widget.isHijri)) {
       return;
     }
-    
-    print('_isRtl: $_isRtl');
 
     _isRtl
         ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation()
@@ -7306,7 +7304,6 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
   }
 
   void _moveToNextViewYear() {
-    print('_moveToNextViewYear');
     if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
       return;
     }
@@ -7321,15 +7318,12 @@ class _SfDateRangePickerState extends State<_SfDateRangePicker>
       return;
     }
 
-    print('_isRtl: $_isRtl');
-
     _isRtl
         ? _scrollViewKey.currentState!._moveToPreviousViewWithAnimation(isYear: true)
         : _scrollViewKey.currentState!._moveToNextViewWithAnimation(isYear: true);
   }
 
   void _moveToPreviousViewYear() {
-    print('_moveToPreviousViewYear');
     if (widget.navigationMode == DateRangePickerNavigationMode.scroll) {
       return;
     }
@@ -9997,6 +9991,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   }
 
   void _updateNextView() {
+    print('_updateNextView');
     if (!_animationController.isCompleted) {
       return;
     }
