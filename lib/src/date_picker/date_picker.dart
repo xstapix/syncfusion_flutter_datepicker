@@ -9389,6 +9389,7 @@ class _PickerScrollViewState extends State<_PickerScrollView>
   }
 
   void _updateNextViewVisibleDates() {
+    print('_updateNextViewVisibleDates');
     final DateRangePickerView pickerView =
         DateRangePickerHelper.getPickerView(widget.controller.view);
     final int numberOfWeeksInView =
