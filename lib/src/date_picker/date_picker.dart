@@ -9437,6 +9437,8 @@ class _PickerScrollViewState extends State<_PickerScrollView>
             DateRangePickerHelper.getViewDatesCount(
                 view, numberOfWeeksInView, widget.picker.isHijri),
           );
+
+          print(dates);
           if (widget.picker.enableMultiView && !widget.isRtl) {
             afterVisibleDates = getVisibleDates(
               afterNextViewDate,
